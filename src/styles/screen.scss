@@ -11,3 +11,28 @@ body {
   margin: 0;
   font: $base-text-size / 1 $base-font-family;
 }
+
+div.cell-container {
+  height: 100px;
+  width: 100px;
+  border: 2px solid black;
+  font-size: 6em;
+  text-align: center;
+}
+
+div.board-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 410px;
+  width: 410px;
+}
+
+div.app-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
