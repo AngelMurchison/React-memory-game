@@ -81,8 +81,6 @@ class Board extends Component {
             }    
             console.log(shuffledContents)
             console.log(Object.keys(shuffledContents))
-            
-
             Object.keys(shuffledContents).map((v, i, list) => {
                 var cell = document.getElementById("img-" + i)
                 // defining this function in-line with addEventListener() made it impossible to find inside of gameLogic. Binding?
