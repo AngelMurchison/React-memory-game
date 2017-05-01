@@ -16,49 +16,12 @@ var content2 = ""
 var index1 = ""
 var index2 = ""
 
-
 // min = 0, max = 16
 var getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
-// var showImage = (cell) => {
-//     var i = cell.getAttribute("src") - "img-"
-//                     cell.setAttribute("src", shuffledContents[i])
-//                     content2 = content1
-//                     index2 = index1
-//                     content1 = cell.getAttribute("src")
-//                     index1 = i
-//                     console.log("current index:" + index1)
-//                     console.log(content1)
-//                     console.log("previous index:" + index2)
-//                     console.log(content2)
-// }
-
-// var gameLogic = (cell) => {
-    
-//                     if(content1 !== "" && content2 !== ""){
-//                         if(content1 == content2){
-//                             cell.setAttribute("style", "opacity: 1")
-//                             document.getElementById("img-" + index2).setAttribute("style", "opacity: 1")
-
-//                             cell.removeEventListener("click", showImage)
-
-//                             console.log("correct")
-//                             content1 = ""
-//                             content2 = ""
-//                         }
-//                         else if(content1 !== content2){
-//                             cell.setAttribute("style", "opacity: 0")
-//                             document.getElementById("img-" + index2).setAttribute("style", "opacity: 0")
-//                             console.log("incorrect")
-//                             content1 = ""
-//                             content2 = ""
-//                         }
-//                     }
-// }
 
 class Board extends Component {
     constructor (props) {
@@ -85,12 +48,14 @@ class Board extends Component {
                 var cell = document.getElementById("img-" + i)
                 // defining this function in-line with addEventListener() made it impossible to find inside of gameLogic. Binding?
                 var showImage = () => {
-                    cell.style.opacity = "1"
-                    cell.setAttribute("src", shuffledContents[i])
-                    content2 = content1
-                    index2 = index1
-                    content1 = cell.getAttribute("src")
-                    index1 = i
+                    if (cell.style.opacity !== "1") {
+                        cell.style.opacity = "1"
+                        cell.setAttribute("src", shuffledContents[i])
+                        content2 = content1
+                        index2 = index1
+                        content1 = cell.getAttribute("src")
+                        index1 = i   
+                    }
                 }
                 cell.addEventListener("click", showImage)
                 cell.addEventListener("click", function gameLogic(){
@@ -115,65 +80,6 @@ class Board extends Component {
                          }
                     }
                 })
-
-
-
-                    // cell.addEventListener("click", () => {
-                    // cell.setAttribute("src", shuffledContents[i])
-                    // content2 = content1
-                    // index2 = index1
-                    // content1 = cell.getAttribute("src")
-                    // index1 = i
-                    // console.log("current index:" + index1)
-                    // console.log(content1)
-                    // console.log("previous index:" + index2)
-                    // console.log(content2)
-
-
-                    // if(content1 !== "" && content2 !== ""){
-                    //     if(content1 == content2){
-                    //         cell.setAttribute("style", "opacity: 1")
-                    //         document.getElementById("img-" + index2).setAttribute("style", "opacity: 1")
-
-                    //         cell.removeEventListener("click", this)
-
-                    //         console.log("correct")
-                    //         content1 = ""
-                    //         content2 = ""
-                    //     }
-                    //     else if(content1 !== content2){
-                    //         cell.setAttribute("style", "opacity: 0")
-                    //         document.getElementById("img-" + index2).setAttribute("style", "opacity: 0")
-                    //         console.log("incorrect")
-                    //         content1 = ""
-                    //         content2 = ""
-                    //     }
-                    // }
-
-
-
-                    // if (content1 == ""){
-                    //     content1 = cell.getAttribute("src")
-                    //     index1 = v
-                    //     console.log(content1)
-                    //     console.log(content2)
-                    // }
-                    // if (content2 == ""){
-                    //     content2 = cell.getAttribute("src")
-                    //     index2 = v
-                    //     console.log(content1)
-                    //     console.log(content2)
-                    // }
-                    // while (content1 !== "" && content2 !== ""){
-                    //     if (content1 !== content2) {
-                    //         cell = document.getElementById("img-" + index1)
-                    //         cell.setAttribute("src", "")
-                    //         cell = document.getElementById("img-" + index2)
-                    //         cell.setAttribute("src", "")
-                    //         content1 = ""
-                    //         content2 = ""
-                    //     }
-                    // }
             })
         }
   render () {
